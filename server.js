@@ -18,7 +18,7 @@ const upload = multer({ storage });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "./build"))); // Use path.join to set the static folder
+app.use(express.static(path.join(__dirname, "./web/build"))); // Use path.join to set the static folder
 
 main()
   .then(() => {
