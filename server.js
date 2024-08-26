@@ -4,7 +4,7 @@ if (process.env.NODE_ENV != "production") {
 
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const ImageUpload = require("./models/ImageSchema");
 const multer = require("multer");
@@ -28,7 +28,9 @@ main()
 
 async function main() {
   try {
-    await mongoose.connect("mongodb://localhost:27017/yourDBname");
+    await mongoose.connect(
+      "mongodb+srv://image:image123@cluster0.fgfyv.mongodb.net/"
+    );
     console.log("server connection is successful");
   } catch (err) {
     console.log("server connection is failed");
