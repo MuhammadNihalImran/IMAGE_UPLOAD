@@ -20,6 +20,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "./web/build"))); // Use path.join to set the static folder
 
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "./web/build/index.html"))
+);
+
 main()
   .then(() => {
     console.log("connection is done");
