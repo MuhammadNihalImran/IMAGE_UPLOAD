@@ -13,7 +13,7 @@ const path = require("path"); // Require the path module
 const cors = require("cors");
 app.use(
   cors({
-    origin: ["https://image-upload-zxbq.vercel.app"],
+    origin: [""],
     methods: ["POST", "GET"],
     credentials: true,
   })
