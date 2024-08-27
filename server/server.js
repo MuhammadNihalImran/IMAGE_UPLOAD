@@ -48,6 +48,11 @@ async function main() {
   }
 }
 
+app.get("/", (req, res) => {
+  res.json("hello");
+});
+
+
 app.post("/images", upload.single("image"), async (req, res) => {
   if (!req.file) {
     return res.status(400).send("No file uploaded.");
