@@ -11,14 +11,20 @@ const multer = require("multer");
 const mongoose = require("mongoose");
 const path = require("path"); // Require the path module
 const cors = require("cors");
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://deploy-mern-1whq.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 
 const { storage, cloudinary } = require("./cloudConfig");
 const upload = multer({ storage });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "./web/build"))); // Use path.join to set the static folder
+app.use(express.static(path.join(__dirname, "public"))); // Use path.join to set the static folder
 
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "./web/build/index.html"))
