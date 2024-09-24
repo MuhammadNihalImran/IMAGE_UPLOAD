@@ -16,10 +16,9 @@
   "main": "cloudConfig.js",
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "build": "npm install --prefix ./web && npm run build --prefix ./web && npm install"
-    
+    "dev": "nodemon backend/index.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "nodemon backend/index.js"
   },
   "author": "",
   "license": "ISC",

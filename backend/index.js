@@ -10,7 +10,9 @@ const ImageUpload = require("./models/ImageSchema");
 const multer = require("multer");
 const mongoose = require("mongoose");
 const path = require("path"); // Require the path module
+
 const cors = require("cors");
+app.use(cors());
 app.use(
   cors({
     origin: [""],
@@ -24,11 +26,10 @@ const upload = multer({ storage });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public"))); // Use path.join to set the static folder
 
-app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "./web/build/index.html"))
-);
+// app.get("*", (req, res) =>
+//   res.sendFile(path.join(__dirname, "./web/build/index.html"))
+// );
 
 main()
   .then(() => {
@@ -38,20 +39,13 @@ main()
 
 async function main() {
   try {
-    await mongoose.connect(
-      "mongodb+srv://image:image123@cluster0.fgfyv.mongodb.net/"
-    );
+    await mongoose.connect(process.env.MONGO_URL);
     console.log("server connection is successful");
   } catch (err) {
     console.log("server connection is failed");
     throw err;
   }
 }
-
-app.get("/", (req, res) => {
-  res.json("hello");
-});
-
 
 app.post("/images", upload.single("image"), async (req, res) => {
   if (!req.file) {
@@ -135,6 +129,14 @@ app.put("/images/:id", upload.single("image"), async (req, res) => {
     console.error("Error updating image:");
     res.status(500).json({ error: "Failed to update image" });
   }
+});
+
+console.log(path.resolve(__dirname, "../frontend/dist"));
+app.use(express.static(path.join(__dirname, "../frontend/dist"))); // Adjust path accordingly
+
+// Fallback route for serving index.html
+app.get("*", (_, res) => {
+  res.sendFile(path.resolve(__dirname, "../frontend/dist", "index.html"));
 });
 
 app.listen(port, () => {
