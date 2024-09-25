@@ -15,12 +15,13 @@ const cors = require("cors");
 app.use(cors());
 app.use(
   cors({
-    origin: [""],
-    methods: ["POST", "GET"],
+    origin: ["http://localhost:5173/"], // Specify allowed origins
+    methods: ["POST", "GET", "DELETE", "PUT"],
     credentials: true,
   })
 );
 
+// http://localhost:5173/
 const { storage, cloudinary } = require("./cloudConfig");
 const upload = multer({ storage });
 
@@ -137,6 +138,11 @@ app.use(express.static(path.join(__dirname, "../frontend/dist"))); // Adjust pat
 // Fallback route for serving index.html
 app.get("*", (_, res) => {
   res.sendFile(path.resolve(__dirname, "../frontend/dist", "index.html"));
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something went wrong!");
 });
 
 app.listen(port, () => {
