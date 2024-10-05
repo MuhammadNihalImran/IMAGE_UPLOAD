@@ -12,14 +12,15 @@ const mongoose = require("mongoose");
 const path = require("path"); // Require the path module
 
 const cors = require("cors");
-app.use(cors());
+
 app.use(
   cors({
-    origin: ["https://image-frontend-one.vercel.app"], // Specify allowed origins
+    origin: "https://image-frontend-one.vercel.app", // Specify allowed origin
     methods: ["POST", "GET", "DELETE", "PUT"],
     credentials: true,
   })
 );
+
 
 // http://localhost:5173/
 const { storage, cloudinary } = require("./cloudConfig");
