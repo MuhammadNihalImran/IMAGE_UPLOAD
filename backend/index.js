@@ -15,7 +15,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(
   cors({
-    origin: ["image-frontend-six.vercel.app"], // Specify allowed origins
+    origin: ["https://image-frontend-one.vercel.app"], // Specify allowed origins
     methods: ["POST", "GET", "DELETE", "PUT"],
     credentials: true,
   })
