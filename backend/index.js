@@ -15,7 +15,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(
   cors({
-    origin: ["http://localhost:5173/"], // Specify allowed origins
+    origin: ["https://image-upload-rwwm.vercel.app/"], // Specify allowed origins
     methods: ["POST", "GET", "DELETE", "PUT"],
     credentials: true,
   })
