@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://image-upload-sandy-eight.vercel.app/images";
+const API_URL = "https://image-upload-sigma-jade.vercel.app/images";
 
 export const getImages = async () => {
   const response = await axios.get(API_URL);
