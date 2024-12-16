@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://image-upload-sigma-jade.vercel.app/images";
+const API_URL = "https://melodic-cajeta-7fdf61.netlify.app/.netlify/functions/api/images";
 
 export const getImages = async () => {
   const response = await axios.get(API_URL);
